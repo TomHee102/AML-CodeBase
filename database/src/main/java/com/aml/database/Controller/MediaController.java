@@ -1,24 +1,28 @@
 package com.aml.database.Controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aml.database.Entity.Media;
-import com.aml.database.Repository.MediaRepo;
+import com.aml.database.Dto.MediaDto;
+import com.aml.database.Service.MediaService;
 
-@CrossOrigin("*")
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @RestController
+@RequestMapping("/api/media")
 public class MediaController {
 
-    @Autowired
-    private MediaRepo mediaService;
+    private MediaService mediaService;
 
-    @GetMapping("/media")
-    public List<Media> getMedia() {
-        return this.mediaService.getMediaData();
+    // Build Add Employee REST API
+    @PostMapping
+    public ResponseEntity<MediaDto> createMedia(@RequestBody MediaDto mediaDto) {
+        MediaDto savedMedia = mediaService.createMedia(mediaDto);
+        return new ResponseEntity<>(savedMedia, HttpStatus.CREATED);
     }
 }
