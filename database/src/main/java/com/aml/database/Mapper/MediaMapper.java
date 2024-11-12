@@ -1,11 +1,11 @@
 package com.aml.database.Mapper;
 
-import com.aml.database.Dto.MediaDto;
+import com.aml.database.DataTransferObject.MediaDto;
 import com.aml.database.Entity.Media;
 
 public class MediaMapper {
 
-    public static MediaDto maptoMediaDto(Media media) {
+    public static MediaDto mapToMediaDto(Media media) {
         return new MediaDto(
                 media.getId(),
                 media.getAuthor(),

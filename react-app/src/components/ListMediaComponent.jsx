@@ -14,15 +14,6 @@ const ListMediaComponent = () => {
 
     }, [])
 
-    /*const dummyData = [
-        {
-            "id": 2,
-            "author": "J.R.R Tolkien",
-            "title": "The Lord of the Rings",
-            "year": 1954
-        }
-    ]*/
-
   return (
     <div className='container'>
         <h2>Directory</h2>

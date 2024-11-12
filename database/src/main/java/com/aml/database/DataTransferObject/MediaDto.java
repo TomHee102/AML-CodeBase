@@ -1,4 +1,4 @@
-package com.aml.database.Dto;
+package com.aml.database.DataTransferObject;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
