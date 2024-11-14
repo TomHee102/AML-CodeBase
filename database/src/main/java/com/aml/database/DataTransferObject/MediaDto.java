@@ -14,4 +14,6 @@ public class MediaDto {
     private String author;
     private String title;
     private int year;
+    private int branchId;
+
 }

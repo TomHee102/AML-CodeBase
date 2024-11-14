@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,5 +45,13 @@ public class MediaController {
     public ResponseEntity<List<MediaDto>> getAllMedia() {
         List<MediaDto> media = mediaService.getAllMedia();
         return ResponseEntity.ok(media);
+    }
+
+    //Transfer Media by Id
+    @PutMapping("/transfer/")
+    public ResponseEntity<MediaDto> transferMedia(@PathVariable("mediaId") int mediaId,@PathVariable("newBranchId") int newBranchId) {
+
+        MediaDto updatedMedia = mediaService.transferMedia(mediaId, newBranchId);
+        return new ResponseEntity<>(updatedMedia, HttpStatus.OK);
     }
 }

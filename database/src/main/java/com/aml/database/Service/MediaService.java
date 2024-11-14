@@ -10,6 +10,13 @@ public interface MediaService {
     MediaDto getMediaById(Integer mediaId);
 
     List<MediaDto> getAllMedia();
+<<<<<<< HEAD
 
     // hello
+=======
+    
+    MediaDto transferMedia(int mediaId, int newBranchId);
+
+   
+>>>>>>> 6938233 (Initial commit)
 }
