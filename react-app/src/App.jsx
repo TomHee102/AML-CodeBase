@@ -1,11 +1,15 @@
 import './App.css'
 import ListMediaComponent from './components/ListMediaComponent'
+import Sidebar from './components/SideBar'
 
 function App() {
 
   return (
     <>
-      <ListMediaComponent />
+      <div className='App'>
+        <Sidebar />
+        <ListMediaComponent />
+      </div>
     </>
   )
 }

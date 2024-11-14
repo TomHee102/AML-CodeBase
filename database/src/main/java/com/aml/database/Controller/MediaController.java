@@ -17,7 +17,7 @@ import com.aml.database.Service.MediaService;
 
 import lombok.AllArgsConstructor;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/media")
