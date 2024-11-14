@@ -10,4 +10,6 @@ public interface MediaService {
     MediaDto getMediaById(Integer mediaId);
 
     List<MediaDto> getAllMedia();
+
+    // hello
 }
