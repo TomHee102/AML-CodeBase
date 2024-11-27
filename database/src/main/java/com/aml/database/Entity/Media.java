@@ -1,5 +1,8 @@
 package com.aml.database.Entity;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,7 +37,7 @@ public class Media {
     int year;
 
     @ManyToOne
-    @JoinColumn(name = "branch_id")
+    @JoinColumn(name = "branch_id",referencedColumnName = "id")
+    @JsonBackReference 
     private Branch branch;
-
 }

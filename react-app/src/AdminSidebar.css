@@ -1,0 +1,97 @@
+/* Admin Sidebar Styles */
+.admin-sidebar {
+  height: 100vh; /* Full height of the viewport */
+  width: 275px; /* Fixed width for sidebar */
+  background-color: #35747f; /* Black background for sidebar */
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed; /* Fix sidebar to the left */
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+/* Profile Section */
+.profile-section {
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+
+.icon-placeholder {
+  background-color: #f4f4f4; /* Placeholder background color */
+  color: #333; /* Text color for the placeholder */
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.profile-email,
+.profile-city {
+  font-size: 14px;
+  color: #d3d3d3; /* Lighter color for email and city */
+}
+
+/* Sidebar List */
+.sidebar-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.sidebar-item {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: #3b8a96; /* Light blue on hover */
+}
+
+.sidebar-item a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.sidebar-item a:hover {
+  color: #ececec; /* Lighter color on hover */
+}
+.sidebar-item .sidebar-icon {
+  margin-right: 15px; /* Add space between icon and text */
+  font-size: 18px; /* Adjust icon size */
+}
+
+
+/* Active state styling */
+.sidebar-item.active {
+  background-color: #3b8a96;
+  color: #ececec;
+}
+
+.sidebar-item.active a {
+  color: #ececec;
+}
+.main-content {
+  margin-left: 275px; /* Offset the content by the width of the sidebar */
+  background-color: #e1f0f2; /* Background color for the area beside the sidebar */
+  padding: 20px;
+  height: 100vh; /* Ensure full height */
+  width: calc(100% - 275px); /* Ensure the content area takes up remaining space beside sidebar */
+  overflow-y: auto; /* Allow scrolling if content exceeds screen height */
+  box-sizing: border-box; /* Ensure padding does not affect width calculation */
+}
+
+  .main-content.full-screen {
+    margin-left: 0; /* Remove margin when logged out */
+    background-color: #f8f9fa; /* Lighter background when logged out */
+  }

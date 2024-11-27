@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aml.database.DataTransferObject.MediaDto;
+import com.aml.database.DataTransferObject.TransferRequest;
 import com.aml.database.Service.MediaService;
+import com.aml.database.Service.Impl.MediaTransferService;
 
 import lombok.AllArgsConstructor;
 
@@ -25,7 +26,14 @@ import lombok.AllArgsConstructor;
 public class MediaController {
 
     private MediaService mediaService;
+    private MediaTransferService mediaTransferService;
 
+    @GetMapping("/query/{query}")
+    public ResponseEntity<List<MediaDto>> getAllByCriteria(@PathVariable("query") String query) {
+        List<MediaDto> media = mediaService.getAllBySimpleQuery(query, query);
+        return ResponseEntity.ok(media);
+    }
+    
     // Add Media
     @PostMapping
     public ResponseEntity<MediaDto> createMedia(@RequestBody MediaDto mediaDto) {
@@ -46,12 +54,28 @@ public class MediaController {
         List<MediaDto> media = mediaService.getAllMedia();
         return ResponseEntity.ok(media);
     }
-
-    //Transfer Media by Id
-    @PutMapping("/transfer/")
-    public ResponseEntity<MediaDto> transferMedia(@PathVariable("mediaId") int mediaId,@PathVariable("newBranchId") int newBranchId) {
-
-        MediaDto updatedMedia = mediaService.transferMedia(mediaId, newBranchId);
-        return new ResponseEntity<>(updatedMedia, HttpStatus.OK);
+    @PostMapping("/transfer")
+        public ResponseEntity<String> transferMedia(
+                @RequestBody TransferRequest transferRequest
+        ) {
+            String result = mediaTransferService.transferMedia(
+                    transferRequest.getMediaId(),
+                    transferRequest.getFromBranchId(),
+                    transferRequest.getToBranchId()
+            );
+            if (result.equals("Media transferred successfully")) {
+                return ResponseEntity.ok(result);
+            } else {
+                return ResponseEntity.badRequest().body(result);
+            }
     }
+
+    //Return Media
+    //@PostMapping("/return")
+   // public ResponseEntity<MediaDto> returnMedia(@RequestBody MediaDto mediaDto) {
+    //    Integer mediaId = mediaDto.getId();  // MediaReturnRequest DTO
+    //    Integer userId =userDto.getUserId();
+    //    MediaDto updateMedia = mediaService.returnMedia(mediaId,userId);
+     //   return new ResponseEntity<>(updateMedia, HttpStatus.CREATED);
+   // }
 }

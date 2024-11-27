@@ -4,6 +4,7 @@ import com.aml.database.DataTransferObject.MediaDto;
 import com.aml.database.Entity.Branch;
 import com.aml.database.Entity.Media;
 
+
 public class MediaMapper {
 
     public static MediaDto mapToMediaDto(Media media) {
@@ -12,16 +13,18 @@ public class MediaMapper {
                 media.getAuthor(),
                 media.getTitle(),
                 media.getYear(),
-                media.getBranch() != null ? media.getBranch().getId() : 0);
-              
+                media.getBranch() != null ? media.getBranch().getId() : 0
+                //media.getMediaTransferRequest() != null ? media.getMediaTransferRequest().size() : 0 
+        );
     }
-
     public static Media mapToMedia(MediaDto mediaDto, Branch branch) {
-        return new Media(
-                mediaDto.getId(),
-                mediaDto.getAuthor(),
-                mediaDto.getTitle(),
-                mediaDto.getYear(),
-                branch);
+        Media media = new Media(); 
+        media.setId(mediaDto.getId());
+        media.setAuthor(mediaDto.getAuthor());
+        media.setTitle(mediaDto.getTitle());
+        media.setYear(mediaDto.getYear());
+        media.setBranch(branch); 
+      //  media.setMediaTransferRequest(new ArrayList<>()); 
+        return media;
     }
 }

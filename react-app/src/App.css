@@ -17,6 +17,7 @@ body {
 }
 
 .icon {
+  margin: 0;
   height: 2em;
   padding-right: 1em;
 }
@@ -24,13 +25,15 @@ body {
 .SidebarList {
   height: 100%;
   width: 100%;
+  padding: 0;
 }
 
 .SidebarList .row {
+  margin: 0;
   width: 100%;
   height: 50px;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 1em;
+  padding-bottom: 3em;
   list-style-type: none;
   color: #ECECEC;
   display: flex;
@@ -43,7 +46,21 @@ body {
   background-color: #ECECEC;
 }
 
+.SidebarList #active{
+  color: #ECECEC;
+  background-color: #3b8a96;
+}
+
 .container {
   padding: 5em;
   border-radius: 25px;
+}
+
+.logo {
+  font-size: larger;
+  text-align: center;
+  padding: 3em;
+  border-bottom: solid #ECECEC;
+  border-bottom-style: inset;
+  border-bottom-width: 10px;
 }

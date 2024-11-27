@@ -15,5 +15,4 @@ public class MediaDto {
     private String title;
     private int year;
     private int branchId;
-
 }
