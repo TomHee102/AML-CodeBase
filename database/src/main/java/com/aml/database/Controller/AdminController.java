@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aml.database.Service.AdminService;
+
 import lombok.AllArgsConstructor;
 
 
@@ -23,7 +25,7 @@ public class AdminController { ////realtime project-1
     }
  */
 
-     //private AdminService adminService;
+    private AdminService adminService;
    
 
 }
