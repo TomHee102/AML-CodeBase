@@ -26,6 +26,6 @@ public class AdminController { ////realtime project-1
  */
 
     private AdminService adminService;
-   
+    
 
 }
