@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import AdminApp from './AdminApp.jsx';
 import App from './App.jsx';
 import './index.css';
-const isAdmin = true;
+const isAdmin = false;
 createRoot(document.getElementById('root')).render(
   <StrictMode>
    {isAdmin ? <AdminApp /> : <App />}

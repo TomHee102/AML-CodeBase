@@ -18,16 +18,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // Disable CSRF protection (common for REST APIs)
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers(
-                    new AntPathRequestMatcher("/api/users/register"),
-                    new AntPathRequestMatcher("/api/users/verify"),
-                    new AntPathRequestMatcher("/api/users/login")
-                ).permitAll() // Public endpoints
-                .anyRequest().authenticated() // Any other request requires authentication
-            )
-            .httpBasic(); // Enable HTTP Basic Authentication for APIs
+                .csrf(csrf -> csrf.disable()) // Disable CSRF protection (common for REST APIs)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers( /*
+                                           * Bryan, this needs changing to only require authentication for user and
+                                           * admin related requests - Tom
+                                           */
+                                new AntPathRequestMatcher("/api/users/register"),
+                                new AntPathRequestMatcher("/api/users/verify"),
+                                new AntPathRequestMatcher("/api/users/login"),
+                                new AntPathRequestMatcher("/api/media"))
+                        .permitAll() // Public endpoints
+                        .anyRequest().authenticated() // Any other request requires authentication
+                )
+                .httpBasic(); // Enable HTTP Basic Authentication for APIs
         return http.build(); // Return the built SecurityFilterChain
     }
 

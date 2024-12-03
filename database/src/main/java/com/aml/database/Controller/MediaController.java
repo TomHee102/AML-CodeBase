@@ -33,7 +33,7 @@ public class MediaController {
         List<MediaDto> media = mediaService.getAllBySimpleQuery(query, query);
         return ResponseEntity.ok(media);
     }
-    
+
     // Add Media
     @PostMapping
     public ResponseEntity<MediaDto> createMedia(@RequestBody MediaDto mediaDto) {
@@ -54,28 +54,27 @@ public class MediaController {
         List<MediaDto> media = mediaService.getAllMedia();
         return ResponseEntity.ok(media);
     }
+
     @PostMapping("/transfer")
-        public ResponseEntity<String> transferMedia(
-                @RequestBody TransferRequest transferRequest
-        ) {
-            String result = mediaTransferService.transferMedia(
-                    transferRequest.getMediaId(),
-                    transferRequest.getFromBranchId(),
-                    transferRequest.getToBranchId()
-            );
-            if (result.equals("Media transferred successfully")) {
-                return ResponseEntity.ok(result);
-            } else {
-                return ResponseEntity.badRequest().body(result);
-            }
+    public ResponseEntity<String> transferMedia(
+            @RequestBody TransferRequest transferRequest) {
+        String result = mediaTransferService.transferMedia(
+                transferRequest.getMediaId(),
+                transferRequest.getFromBranchId(),
+                transferRequest.getToBranchId());
+        if (result.equals("Media transferred successfully")) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
-    //Return Media
-    //@PostMapping("/return")
-   // public ResponseEntity<MediaDto> returnMedia(@RequestBody MediaDto mediaDto) {
-    //    Integer mediaId = mediaDto.getId();  // MediaReturnRequest DTO
-    //    Integer userId =userDto.getUserId();
-    //    MediaDto updateMedia = mediaService.returnMedia(mediaId,userId);
-     //   return new ResponseEntity<>(updateMedia, HttpStatus.CREATED);
-   // }
+    // Return Media
+    // @PostMapping("/return")
+    // public ResponseEntity<MediaDto> returnMedia(@RequestBody MediaDto mediaDto) {
+    // Integer mediaId = mediaDto.getId(); // MediaReturnRequest DTO
+    // Integer userId =userDto.getUserId();
+    // MediaDto updateMedia = mediaService.returnMedia(mediaId,userId);
+    // return new ResponseEntity<>(updateMedia, HttpStatus.CREATED);
+    // }
 }

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
+import "../App.css";
 import { InputGroup } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { Button } from 'react-native-web'
@@ -21,17 +22,42 @@ const ListMediaComponent = () => {
 
     // search state
     const [search, setSearch] = useState('')
-    console.log(search)
+
+    const handleChange = value => {
+        setSearch(value);
+        filterData(value);
+    }
+
+    
+    const filterData = value => {
+        const valueToLower = value.toLowerCase().trim();
+
+        if(valueToLower)
+        {
+            const filteredData = media.filter(item => {
+                return Object.keys(item).some(key => {
+                    return item[key].toString().toLowerCase().includes(valueToLower)
+                })
+            });
+            setMedia(filteredData)
+        }
+        else
+        {
+            listMedia().then((response) => {
+                setMedia(response.data)
+            })
+        }
+    }
 
   return (
     <div className='container'>
-        <h1 className='mt-4'>Media Directory</h1>
+        <h1>Media Directory</h1>
         <Form>
             <InputGroup className='my-3'>
-                <Form.Control onChange={(e)=>setSearch(e.target.value)} placeholder='Search'/>
+                <Form.Control onChange={(e)=>handleChange(e.target.value)} placeholder='Search'/>
             </InputGroup>
         </Form>
-        <table className='table table-striped table-bordered'>
+        <table class='rounded' className='table table-striped table-bordered'>
             <thead>
                 <tr>
                     <th>Title</th>
@@ -43,11 +69,7 @@ const ListMediaComponent = () => {
             </thead>
             <tbody>
                 {
-                    media.filter((media) => {
-                        return search.toLowerCase() === '' 
-                        ? media 
-                        : media.title.toLowerCase().includes(search);
-                    }).map(media =>
+                    media.map(media =>
                         <tr key={media.id}>
                             <td>{media.title}</td>
                             <td>{media.author}</td>
@@ -59,6 +81,7 @@ const ListMediaComponent = () => {
                         </tr>
                     )
                 }
+                {media.length === 0 && <span>Not results found!</span>}
             </tbody>
         </table>
     </div>

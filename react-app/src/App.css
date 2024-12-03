@@ -1,4 +1,5 @@
 .App {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   width: 100vw;
   height: 100vh;
   background-color: #ECECEC;
@@ -11,6 +12,7 @@ body {
 }
 
 .Sidebar {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   height: 100%;
   width: 275px;
   background-color: #58AAB9;
@@ -20,6 +22,7 @@ body {
   margin: 0;
   height: 2em;
   padding-right: 1em;
+  color: #ECECEC;
 }
 
 .SidebarList {
@@ -52,15 +55,26 @@ body {
 }
 
 .container {
-  padding: 5em;
-  border-radius: 25px;
+  padding-top: 5em;
+  padding-right: 5em;
+}
+
+.logoContainer {
+  font-size: larger;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  padding: 1em;
+  color: #ECECEC;
 }
 
 .logo {
-  font-size: larger;
-  text-align: center;
-  padding: 3em;
-  border-bottom: solid #ECECEC;
-  border-bottom-style: inset;
-  border-bottom-width: 10px;
+  margin: 0;
+  height: 6em;
+  color: #ECECEC;
+}
+
+.mediaDirectory{
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border-radius: 10px;
 }

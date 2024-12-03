@@ -22,7 +22,8 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@Valid @RequestBody UserRegistrationDto registrationDto) {
         userService.registerUser(registrationDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully. Please check your email for verification.");
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("User registered successfully. Please check your email for verification.");
     }
 
     @GetMapping("/verify")
@@ -45,9 +46,9 @@ public class UserController {
     }
 
     @PutMapping("/profile/{userId}")
-    public ResponseEntity<UserProfileDto> updateUserProfile(@PathVariable Long userId, @Valid @RequestBody UserProfileDto userProfileDto) {
+    public ResponseEntity<UserProfileDto> updateUserProfile(@PathVariable Long userId,
+            @Valid @RequestBody UserProfileDto userProfileDto) {
         UserProfileDto updatedProfile = userService.updateUserProfile(userId, userProfileDto);
         return ResponseEntity.ok(updatedProfile);
     }
 }
-
