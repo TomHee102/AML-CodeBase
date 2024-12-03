@@ -78,3 +78,7 @@ body {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   border-radius: 10px;
 }
+
+.table-repsonsive {
+  max-height: 300px;
+}

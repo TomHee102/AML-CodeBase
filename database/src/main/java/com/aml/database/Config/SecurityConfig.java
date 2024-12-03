@@ -27,7 +27,8 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/api/users/register"),
                                 new AntPathRequestMatcher("/api/users/verify"),
                                 new AntPathRequestMatcher("/api/users/login"),
-                                new AntPathRequestMatcher("/api/media"))
+                                new AntPathRequestMatcher("/api/media"),
+                                new AntPathRequestMatcher("/api/media/upload-csv"))
                         .permitAll() // Public endpoints
                         .anyRequest().authenticated() // Any other request requires authentication
                 )

@@ -36,7 +36,10 @@ const ListMediaComponent = () => {
         {
             const filteredData = media.filter(item => {
                 return Object.keys(item).some(key => {
-                    return item[key].toString().toLowerCase().includes(valueToLower)
+                    if(item[key] != null)
+                    {
+                        return item[key].toString().toLowerCase().includes(valueToLower)
+                    }
                 })
             });
             setMedia(filteredData)
@@ -57,33 +60,39 @@ const ListMediaComponent = () => {
                 <Form.Control onChange={(e)=>handleChange(e.target.value)} placeholder='Search'/>
             </InputGroup>
         </Form>
-        <table class='rounded' className='table table-striped table-bordered'>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Year</th>
-                    <th>Branch</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    media.map(media =>
-                        <tr key={media.id}>
-                            <td>{media.title}</td>
-                            <td>{media.author}</td>
-                            <td>{media.year}</td>
-                            <td>{media.branch}</td>
-                            <td>
-                                <Button title='Borrow'onPress={() => console.log(media.id)}/>
-                            </td>
-                        </tr>
-                    )
-                }
-                {media.length === 0 && <span>Not results found!</span>}
-            </tbody>
-        </table>
+        <div className='table-responsive'>
+            <table className='overflow table table-striped table-bordered small'>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Provider</th>
+                        <th>Year</th>
+                        <th>Branch</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        media.map(media =>
+                            <tr key={media.id}>
+                                <td>{media.title}</td>
+                                <td>{media.author}</td>
+                                <td>{media.category}</td>
+                                <td>{media.publisher}</td>
+                                <td>{media.year}</td>
+                                <td>{media.branch}</td>
+                                <td>
+                                    <Button title='Borrow'onPress={() => console.log(media.id)}/>
+                                </td>
+                            </tr>
+                        )
+                    }
+                    {media.length === 0 && <span>Not results found!</span>}
+                </tbody>
+            </table>
+        </div>   
     </div>
   )
 }

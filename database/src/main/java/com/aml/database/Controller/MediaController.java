@@ -1,5 +1,6 @@
 package com.aml.database.Controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.aml.database.DataTransferObject.MediaDto;
 import com.aml.database.DataTransferObject.TransferRequest;
@@ -25,8 +28,14 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/media")
 public class MediaController {
 
-    private MediaService mediaService;
+    private final MediaService mediaService;
     private MediaTransferService mediaTransferService;
+
+    @PostMapping(value = "/upload-csv", consumes = { "multipart/form-data" })
+    public ResponseEntity<Integer> uploadCsv(
+            @RequestPart("file") MultipartFile file) throws IOException {
+        return ResponseEntity.ok(mediaService.uploadCsv(file));
+    }
 
     @GetMapping("/query/{query}")
     public ResponseEntity<List<MediaDto>> getAllByCriteria(@PathVariable("query") String query) {

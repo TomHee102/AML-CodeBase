@@ -13,6 +13,9 @@ public class MediaDto {
     private int id;
     private String author;
     private String title;
+    private String description;
+    private String category;
+    private String publisher;
     private int year;
     private int branchId;
 }
