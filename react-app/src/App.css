@@ -1,5 +1,6 @@
 .App {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 0;
   width: 100vw;
   height: 100vh;
   background-color: #ECECEC;
@@ -9,6 +10,11 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
 .Sidebar {
@@ -55,6 +61,7 @@ body {
 }
 
 .container {
+  display: inline-block;
   padding-top: 5em;
   padding-right: 5em;
 }
@@ -79,6 +86,60 @@ body {
   border-radius: 10px;
 }
 
-.table-repsonsive {
-  max-height: 300px;
+.table-responsive {
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);
+  border-collapse: separate;
+  border-radius: 20px;
+  display: inline-block;
+  width: 750px;
+}
+
+tr:hover td
+{
+  background-color:#58AAB9;
+}
+
+thead{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+table {
+  display: inline-block;
+  overflow-y: scroll;
+  height: 550px;
+}
+
+.search{
+  width: 300px;
+}
+
+.mediaInfoContainer {
+  box-shadow: inset 5px 5px 2px 1px rgba(0, 0, 255, .2);
+  background-color: white;
+  border-radius: 20px;
+  width: 400px;
+  height: auto;
+  margin-left: 2em;
+  padding: 0.5em;
+  position: absolute;
+  display: inline-block;
+}
+
+.mediaInfo {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.mediaInfo, li
+{
+  list-style: none;
+  padding: 10px;
+}
+
+button
+{
+  padding:10px;
+  float: right;
 }

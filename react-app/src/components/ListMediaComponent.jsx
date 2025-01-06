@@ -10,6 +10,7 @@ const ListMediaComponent = () => {
 
     // axois API call
     const [media, setMedia] = useState([])
+    const [selected, setSelected] = useState([])
 
     useEffect(() => {
         listMedia().then((response) => {
@@ -23,12 +24,16 @@ const ListMediaComponent = () => {
     // search state
     const [search, setSearch] = useState('')
 
+    const selectChange = value => {
+        setSelected(value);
+        console.log(value);
+    }
+
     const handleChange = value => {
         setSearch(value);
         filterData(value);
     }
 
-    
     const filterData = value => {
         const valueToLower = value.toLowerCase().trim();
 
@@ -40,7 +45,7 @@ const ListMediaComponent = () => {
                     {
                         return item[key].toString().toLowerCase().includes(valueToLower)
                     }
-                })
+                }) 
             });
             setMedia(filteredData)
         }
@@ -55,13 +60,13 @@ const ListMediaComponent = () => {
   return (
     <div className='container'>
         <h1>Media Directory</h1>
-        <Form>
+        <Form className='search'>
             <InputGroup className='my-3'>
                 <Form.Control onChange={(e)=>handleChange(e.target.value)} placeholder='Search'/>
             </InputGroup>
         </Form>
         <div className='table-responsive'>
-            <table className='overflow table table-striped table-bordered small'>
+            <table className='table table-striped small'>
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -70,29 +75,37 @@ const ListMediaComponent = () => {
                         <th>Provider</th>
                         <th>Year</th>
                         <th>Branch</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         media.map(media =>
-                            <tr key={media.id}>
+                            <tr onClick={(e) => selectChange(media)} key={media.id}>
                                 <td>{media.title}</td>
                                 <td>{media.author}</td>
                                 <td>{media.category}</td>
                                 <td>{media.publisher}</td>
                                 <td>{media.year}</td>
                                 <td>{media.branch}</td>
-                                <td>
-                                    <Button title='Borrow'onPress={() => console.log(media.id)}/>
-                                </td>
                             </tr>
                         )
                     }
-                    {media.length === 0 && <span>Not results found!</span>}
+                    {media.length === 0 && <span>No results found!</span>}
                 </tbody>
             </table>
-        </div>   
+        </div>  
+        <div className='mediaInfoContainer'>
+            {
+                (
+                    <ul className='mediaInfo'>
+                        <li>Title: {selected.title}</li>
+                        <li>Author: {selected.author}</li>
+                        <li>Category: {selected.category}</li>
+                        <li>Publisher: {selected.publisher}</li>
+                    </ul>
+                )
+            }
+        </div>
     </div>
   )
 }
