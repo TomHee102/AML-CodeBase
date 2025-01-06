@@ -3,14 +3,31 @@ import React, { useEffect, useState } from 'react'
 import "../App.css";
 import { InputGroup } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
-import { Button } from 'react-native-web'
+import Modal from 'react-modal'
+import { Button, Text, View } from 'react-native-web'
 import { listMedia } from '../services/MediaService'
+import { MdHeight } from 'react-icons/md';
 
 const ListMediaComponent = () => {
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+        },
+      };
 
     // axois API call
     const [media, setMedia] = useState([])
     const [selected, setSelected] = useState([])
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
 
     useEffect(() => {
         listMedia().then((response) => {
@@ -66,7 +83,7 @@ const ListMediaComponent = () => {
             </InputGroup>
         </Form>
         <div className='table-responsive'>
-            <table className='table table-striped small'>
+            <table className='table small'>
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -75,7 +92,7 @@ const ListMediaComponent = () => {
                         <th>Provider</th>
                         <th>Year</th>
                         <th>Branch</th>
-                    </tr>
+                    </tr> 
                 </thead>
                 <tbody>
                     {
@@ -102,9 +119,20 @@ const ListMediaComponent = () => {
                         <li>Author: {selected.author}</li>
                         <li>Category: {selected.category}</li>
                         <li>Publisher: {selected.publisher}</li>
+                        <li>Branch: {selected.branch}</li>
                     </ul>
                 )
             }
+            <Button title='Borrow' onPress={toggleModal} size='lg' color='#58AAB9'/>
+            <Modal
+                style={customStyles}
+                isOpen={isModalVisible}
+                contentLabel="Example Modal">
+                    <div className='popupText'>
+                        <Text>You've successfully borrowed <b>{selected.title}!</b></Text>
+                        <Button title='Close' onPress={toggleModal} size='lg' color='#58AAB9'/>
+                    </div>
+            </Modal>
         </div>
     </div>
   )

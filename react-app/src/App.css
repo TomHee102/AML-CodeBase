@@ -2,26 +2,22 @@
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   margin: 0;
   width: 100vw;
-  height: 100vh;
   background-color: #ECECEC;
   display: flex;
-}
-
-body {
-  margin: 0;
-  padding: 0;
 }
 
 html, body {
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0px;
 }
 
 .Sidebar {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  height: 100%;
   width: 275px;
   background-color: #58AAB9;
+  box-shadow: 10px 0px 2px 0px rgba(0, 0, 255, .2);
 }
 
 .icon {
@@ -32,7 +28,6 @@ html, body {
 }
 
 .SidebarList {
-  height: 100%;
   width: 100%;
   padding: 0;
 }
@@ -64,6 +59,8 @@ html, body {
   display: inline-block;
   padding-top: 5em;
   padding-right: 5em;
+  height: 100vh;
+  color: #58AAB9;
 }
 
 .logoContainer {
@@ -96,16 +93,17 @@ html, body {
 
 tr:hover td
 {
+  color: white;
   background-color:#58AAB9;
 }
 
 thead{
   position: sticky;
   top: 0;
-  z-index: 1;
 }
 
 table {
+  color: #717171;
   display: inline-block;
   overflow-y: scroll;
   height: 550px;
@@ -116,20 +114,18 @@ table {
 }
 
 .mediaInfoContainer {
-  box-shadow: inset 5px 5px 2px 1px rgba(0, 0, 255, .2);
-  background-color: white;
-  border-radius: 20px;
-  width: 400px;
   height: auto;
   margin-left: 2em;
-  padding: 0.5em;
   position: absolute;
   display: inline-block;
 }
 
 .mediaInfo {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  box-shadow: inset 5px 5px 2px 1px rgba(0, 0, 255, .2);
+  background-color: white;
+  border-radius: 20px;
+  width: 400px;
+  color: #717171;
 }
 
 .mediaInfo, li
@@ -140,6 +136,6 @@ table {
 
 button
 {
-  padding:10px;
   float: right;
+  padding:10px;
 }
