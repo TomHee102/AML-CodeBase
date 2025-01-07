@@ -9,7 +9,7 @@ import { listMedia } from '../services/MediaService'
 import { MdHeight } from 'react-icons/md';
 
 const ListMediaComponent = () => {
-    const customStyles = {
+    const infoStyle = {
         content: {
             top: '50%',
             left: '50%',
@@ -90,8 +90,7 @@ const ListMediaComponent = () => {
                         <th>Author</th>
                         <th>Category</th>
                         <th>Provider</th>
-                        <th>Year</th>
-                        <th>Branch</th>
+                        <th>Year</th>   
                     </tr> 
                 </thead>
                 <tbody>
@@ -103,7 +102,6 @@ const ListMediaComponent = () => {
                                 <td>{media.category}</td>
                                 <td>{media.publisher}</td>
                                 <td>{media.year}</td>
-                                <td>{media.branch}</td>
                             </tr>
                         )
                     }
@@ -125,7 +123,7 @@ const ListMediaComponent = () => {
             }
             <Button title='Borrow' onPress={toggleModal} size='lg' color='#58AAB9'/>
             <Modal
-                style={customStyles}
+                style={infoStyle}
                 isOpen={isModalVisible}
                 contentLabel="Example Modal">
                     <div className='popupText'>

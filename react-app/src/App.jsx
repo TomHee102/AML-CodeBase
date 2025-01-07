@@ -19,6 +19,16 @@ function Home(){
   )
 }
 
+function Account(){
+  return (
+    <div>
+      <h1>
+        Account
+      </h1>
+    </div>
+  )
+}
+
 function App(){
 
   return (
@@ -28,7 +38,7 @@ function App(){
         <Routes>
           <Route path="/home" element={<Home/>}/>
           <Route path="/search" element={<ListMediaComponent/>}/>
-          <Route path="/account" element={<Home/>}/>
+          <Route path="/account" element={<Account/>}/>
         </Routes>
       </div>
     </Router>
